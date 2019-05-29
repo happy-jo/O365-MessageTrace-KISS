@@ -8,4 +8,5 @@ $MTHeaderParams = @{DataServiceVersion="2.0";MaxDataServiceVersion="2.0";'Accept
 
 $messageTrace = (Invoke-WebRequest -Headers $MTHeaderParams -Uri 'https://reports.office365.com/ecp/reportingwebservice/reporting.svc/MessageTrace' -Method Get -Credential $creds -UseBasicParsing).content | ConvertFrom-Json 
 
-$messageTrace.d.results | ft Index, MessageTraceId, Received, SenderAddress, FromIP, RecipientAddress, ToIP, Subject, Status, Size
+$report = $messageTrace.d.results
+$report | ft Index, MessageTraceId, Received, SenderAddress, FromIP, RecipientAddress, ToIP, Subject, Status, Size
